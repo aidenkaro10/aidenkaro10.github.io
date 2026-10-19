@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- This is what shows in the browser tab and in Google results -->
+  <title>Aiden Karo</title>
+  <meta name="description" content="Aiden Karo. Student, founder of Rekko, and builder of AI projects.">
+
+  <!-- Font from Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- All the styling lives in style.css -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===== TOP BAR ===== -->
+  <header class="nav">
+    <a href="#" class="logo">Aiden Karo</a>
+    <nav>
+      <a href="#projects">Projects</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ===== INTRO (first thing people see) ===== -->
+    <section class="hero">
+      <p class="eyebrow">Student · Founder · Builder</p>
+      <h1>Hi, I'm Aiden.</h1>
+      <p class="lead">
+        <!-- EDIT: one or two sentences about you -->
+        Math and CS student at the University of Florida. I build AI tools and automations, and I run Rekko, a startup that gets local businesses seen on Google and in AI answers.
+      </p>
+      <div class="buttons">
+        <a href="#projects" class="btn primary">See my projects</a>
+        <!-- EDIT: drop a resume.pdf file in this folder and this button will work -->
+        <!-- <a href="resume.pdf" class="btn">Resume</a> -->
+      </div>
+    </section>
+
+    <!-- ===== PROJECTS ===== -->
+    <section id="projects">
+      <h2>Projects</h2>
+
+      <div class="grid">
+
+        <!--
+          HOW TO ADD A PROJECT:
+          Copy everything from <article> to </article>, paste it below, and change the text.
+          Delete the <a> link lines if a project has no link.
+        -->
+
+        <article class="card featured">
+          <span class="tag">Startup · Founder · Apr 2026 to now</span>
+          <h3>Rekko</h3>
+          <p>
+            <!-- EDIT: add a real result here, like number of clients or a ranking win -->
+            AI search visibility for local businesses. I built the whole system (n8n, Claude API, Supabase, Twilio, Firecrawl) and it delivers 12+ marketing services to paying home-service clients: review automation, Google Business Profile posts, keyword research, missed-call text-back, and more.
+          </p>
+          <p class="stack">n8n · Claude API · Supabase · Twilio · Firecrawl</p>
+          <!-- EDIT: put Rekko's website in href and uncomment this
+          <div class="links"><a href="https://...">Website →</a></div> -->
+        </article>
+
+        <article class="card">
+          <span class="tag">Chrome extension</span>
+          <h3>Gator Tab</h3>
+          <p>A new-tab page for UF students. Campus portal shortcuts, library and dining hours, and quick links in one place.</p>
+          <p class="stack">JavaScript · Chrome Extensions API</p>
+        </article>
+        <article class="card">
+          <span class="tag">AI agent</span>
+          <h3>Canvas LMS Agent</h3>
+          <p>Connects Claude to the university's Canvas so it can handle 9 different coursework tasks for me.</p>
+          <p class="stack">Python · Claude API</p>
+        </article>
+        <article class="card">
+          <span class="tag">Automation</span>
+          <h3>Internship Scraper</h3>
+          <p>Runs twice a day, finds new internship postings, removes duplicates, and sends me the good ones.</p>
+          <p class="stack">Python · Web scraping</p>
+        </article>
+        <article class="card">
+          <span class="tag">AI tool</span>
+          <h3>LLM Council</h3>
+          <p>Sends one question to several AI models at once, then combines their answers into one ranked response.</p>
+          <p class="stack">Python · Multi-model APIs</p>
+        </article>
+        <article class="card">
+          <span class="tag">Automation</span>
+          <h3>Video Editing Pipeline</h3>
+          <p>Cuts, merges, and formats raw footage into short-form videos ready to post.</p>
+          <p class="stack">Claude Code · ffmpeg</p>
+        </article>
+        <article class="card">
+          <span class="tag">Knowledge system</span>
+          <h3>Second Brain</h3>
+          <p>My personal AI knowledge base. Stores and pulls up notes across school, content, and business.</p>
+          <p class="stack">Claude · Markdown</p>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ===== ABOUT ===== -->
+    <section id="about">
+      <h2>About</h2>
+      <p>
+        <!-- EDIT: a few sentences. School, what you're into, what kind of internship you want -->
+        I'm in the Honors Program at the University of Florida studying Math and Computer Science (class of 2030).
+        This summer I was at Jane Street's AMP in NYC, where my team placed 2nd of 39 in an algorithm bot competition.
+        I also published a study on how pro athletes use visualization, and I'm the incoming president of UF's Tikkun Olam Makers chapter.
+        <!-- EDIT: say what kind of internship you want -->
+        I'm looking for internships where I can build real things with AI.
+      </p>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>Want to work together? Reach out.</p>
+      <div class="links big">
+        <!-- EDIT: put your real links here -->
+        <!-- <a href="mailto:you@example.com">Email</a> -->
+        <a href="https://www.linkedin.com/in/aiden-karo-8562802b7/">LinkedIn</a>
+        <a href="https://github.com/aidenkaro10">GitHub</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <!-- The year updates on its own -->
+    © <span id="year"></span> Aiden Karo
+  </footer>
+
+  <script>
+    // Puts the current year in the footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
