@@ -4,145 +4,198 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- This is what shows in the browser tab and in Google results -->
-  <title>Aiden Karo</title>
-  <meta name="description" content="Aiden Karo. Student, founder of Rekko, and builder of AI projects.">
+  <!-- Security: this page only loads its own files and Google Fonts -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self'; script-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
 
-  <!-- Font from Google Fonts -->
+  <!-- What shows in the browser tab, in Google, and when the link is shared -->
+  <title>Aiden Karo</title>
+  <meta name="description" content="Aiden Karo. Math and CS student at the University of Florida, founder of Rekko, and builder of AI tools.">
+  <meta name="theme-color" content="#0c0b0a">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Aiden Karo">
+  <meta property="og:description" content="Math and CS at UF. Founder of Rekko. I build AI tools that do real work.">
+  <meta property="og:url" content="https://aidenkaro10.github.io/">
+  <meta property="og:image" content="https://aidenkaro10.github.io/assets/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+  <!-- Fonts: a serif for headlines, a clean sans for everything else -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
   <!-- All the styling lives in style.css -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- lets keyboard users jump past the menu -->
+  <a class="skip" href="#work">Skip to projects</a>
 
   <!-- ===== TOP BAR ===== -->
   <header class="nav">
-    <a href="#" class="logo">Aiden Karo</a>
-    <nav>
-      <a href="#projects">Projects</a>
+    <a href="#top" class="logo">Aiden Karo</a>
+    <nav aria-label="Sections">
+      <a href="#work">Work</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
 
-  <main>
+  <main id="top">
 
-    <!-- ===== INTRO (first thing people see) ===== -->
+    <!-- ===== INTRO ===== -->
     <section class="hero">
-      <p class="eyebrow">Student · Founder · Builder</p>
-      <h1>Hi, I'm Aiden.</h1>
-      <p class="lead">
-        <!-- EDIT: one or two sentences about you -->
-        Math and CS student at the University of Florida. I build AI tools and automations, and I run Rekko, a startup that gets local businesses seen on Google and in AI answers.
+      <p class="eyebrow reveal">Student · Founder · Builder</p>
+      <h1 class="reveal">I build AI tools<br>that do <em>real work.</em></h1>
+      <p class="lead reveal">
+        I'm Aiden. Math and CS student at the University of Florida. I run Rekko, a startup that gets local businesses seen on Google and in AI answers, and I build tools and automations on the side.
       </p>
-      <div class="buttons">
-        <a href="#projects" class="btn primary">See my projects</a>
-        <!-- EDIT: drop a resume.pdf file in this folder and this button will work -->
+      <div class="buttons reveal">
+        <a href="#work" class="btn primary">See my work</a>
+        <a href="https://github.com/aidenkaro10" class="btn">GitHub</a>
+        <!-- EDIT: drop a resume.pdf file in this folder, then uncomment this line -->
         <!-- <a href="resume.pdf" class="btn">Resume</a> -->
       </div>
+
+      <!-- three quick facts -->
+      <ul class="facts reveal">
+        <li><strong>Founder</strong><span>Rekko, Apr 2026 to now</span></li>
+        <li><strong>2nd of 39</strong><span>Jane Street AMP bot competition</span></li>
+        <li><strong>UF Honors</strong><span>Math + CS, class of 2030</span></li>
+      </ul>
     </section>
 
-    <!-- ===== PROJECTS ===== -->
-    <section id="projects">
-      <h2>Projects</h2>
+    <!-- ===== SELECTED WORK ===== -->
+    <section id="work">
+      <h2 class="reveal">Selected work</h2>
 
-      <div class="grid">
-
-        <!--
-          HOW TO ADD A PROJECT:
-          Copy everything from <article> to </article>, paste it below, and change the text.
-          Delete the <a> link lines if a project has no link.
-        -->
-
-        <article class="card featured">
-          <span class="tag">Startup · Founder · Apr 2026 to now</span>
+      <!-- the two big ones -->
+      <article class="feature with-list reveal">
+        <div class="feature-text">
+          <span class="tag">Startup · Founder</span>
           <h3>Rekko</h3>
           <p>
-            <!-- EDIT: add a real result here, like number of clients or a ranking win -->
-            AI search visibility for local businesses. I built the whole system (n8n, Claude API, Supabase, Twilio, Firecrawl) and it delivers 12+ marketing services to paying home-service clients: review automation, Google Business Profile posts, keyword research, missed-call text-back, and more.
+            AI search visibility for local businesses. It gets home-service companies to the top of Google and AI recommendations. I built the whole system myself, and it serves paying clients.
           </p>
           <p class="stack">n8n · Claude API · Supabase · Twilio · Firecrawl</p>
           <!-- EDIT: put Rekko's website in href and uncomment this
           <div class="links"><a href="https://...">Website →</a></div> -->
-        </article>
+        </div>
+        <!-- a few of the services Rekko runs for clients -->
+        <div class="services" aria-label="Some of what Rekko does">
+          <span class="services-count">12+</span>
+          <span class="services-label">marketing services delivered to clients</span>
+          <ul>
+            <li>Review automation</li>
+            <li>Google Business Profile posts</li>
+            <li>Keyword research</li>
+            <li>Missed-call text-back</li>
+          </ul>
+        </div>
+      </article>
 
-        <article class="card">
-          <span class="tag">Chrome extension</span>
-          <h3>Gator Tab</h3>
-          <p>A new-tab page for UF students. Campus portal shortcuts, library and dining hours, and quick links in one place.</p>
-          <p class="stack">JavaScript · Chrome Extensions API</p>
-        </article>
-        <article class="card">
-          <span class="tag">AI agent</span>
-          <h3>Canvas LMS Agent</h3>
-          <p>Connects Claude to the university's Canvas so it can handle 9 different coursework tasks for me.</p>
-          <p class="stack">Python · Claude API</p>
-        </article>
-        <article class="card">
-          <span class="tag">Automation</span>
-          <h3>Internship Scraper</h3>
-          <p>Runs twice a day, finds new internship postings, removes duplicates, and sends me the good ones.</p>
-          <p class="stack">Python · Web scraping</p>
-        </article>
-        <article class="card">
-          <span class="tag">AI tool</span>
+      <article class="feature with-image reveal">
+        <a class="shot" href="https://aidenkaro10.github.io/llm-council/" aria-label="Open LLM Council">
+          <img src="assets/llm-council.jpg" alt="LLM Council: AI lawyers in a 3D courtroom, with the verdict panel on the left" width="1008" height="630" loading="lazy">
+        </a>
+        <div class="feature-text">
+          <span class="tag">Web app · Live</span>
           <h3>LLM Council</h3>
-          <p>Sends one question to several AI models at once, then combines their answers into one ranked response.</p>
-          <p class="stack">Python · Multi-model APIs</p>
-        </article>
-        <article class="card">
-          <span class="tag">Automation</span>
-          <h3>Video Editing Pipeline</h3>
-          <p>Cuts, merges, and formats raw footage into short-form videos ready to post.</p>
-          <p class="stack">Claude Code · ffmpeg</p>
-        </article>
-        <article class="card">
-          <span class="tag">Knowledge system</span>
-          <h3>Second Brain</h3>
-          <p>My personal AI knowledge base. Stores and pulls up notes across school, content, and business.</p>
-          <p class="stack">Claude · Markdown</p>
+          <p>
+            Ask one question and four AI models answer it, rank each other blind, and a judge writes one verdict. While you wait, they argue it out in a 3D courtroom with voices and captions. Runs fully in the browser with your own key.
+          </p>
+          <p class="stack">React · three.js · OpenRouter</p>
+          <div class="links">
+            <a href="https://aidenkaro10.github.io/llm-council/">Try it →</a>
+            <a href="https://github.com/aidenkaro10/llm-council">Code</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- the rest, in a grid -->
+      <div class="grid">
+        <!--
+          HOW TO ADD A PROJECT:
+          Copy everything from <article> to </article>, paste it below, and change the text.
+          Delete the <div class="links"> part if a project has no link.
+        -->
+        <article class="card reveal">
+          <span class="tag">Hackathon · SwampHacks XII</span>
+          <h3>Redline</h3>
+          <p>A wristband that warns outdoor workers before they overheat, plans the crew's day around the heat, and calls for help if someone goes down.</p>
+          <p class="stack">Python · Neural nets · Claude · Bluetooth LE</p>
+          <div class="links"><a href="https://github.com/aidenkaro10/redline">Code →</a></div>
         </article>
 
+        <article class="card reveal">
+          <span class="tag">App · UF Promptathon</span>
+          <h3>GatorFit</h3>
+          <p>A social wellness app built around a Gainesville run club. Workouts and meals earn points on a leaderboard, and a gator chomps your row when someone passes you.</p>
+          <p class="stack">JavaScript · Postgres · Claude · USDA FoodData</p>
+          <div class="links"><a href="https://github.com/aidenkaro10/GatorFit">Code →</a></div>
+        </article>
+
+        <article class="card reveal">
+          <span class="tag">Web · Live</span>
+          <h3>Campus Tab</h3>
+          <p>A new tab page in your university's colors, built to work for any campus.</p>
+          <p class="stack">HTML · JavaScript</p>
+          <div class="links"><a href="https://aidenkaro10.github.io/campus-tab/">Try it →</a></div>
+        </article>
+
+        <article class="card reveal">
+          <span class="tag">Story · Live</span>
+          <h3>How a Founder Is Made</h3>
+          <p>A scroll film about growing up Israeli and becoming a founder.</p>
+          <p class="stack">HTML · CSS · JavaScript</p>
+          <div class="links"><a href="https://aidenkaro10.github.io/how-a-founder-is-made/">Watch →</a></div>
+        </article>
       </div>
+
+      <!-- smaller tools, as a simple list -->
+      <h3 class="list-title reveal">Tools I built for myself</h3>
+      <ul class="tools reveal">
+        <li><strong>Canvas LMS Agent</strong><span>Connects Claude to UF's Canvas to handle 9 kinds of coursework tasks.</span></li>
+        <li><strong>Internship Finder</strong><span>Runs twice a day, finds new postings, removes duplicates, and emails me the good ones.</span></li>
+        <li><strong>Second Brain</strong><span>My AI knowledge base across school, content and business.</span></li>
+        <li><strong>Video Pipeline</strong><span>Cuts, merges and formats raw footage into short-form videos ready to post.</span></li>
+      </ul>
     </section>
 
     <!-- ===== ABOUT ===== -->
     <section id="about">
-      <h2>About</h2>
-      <p>
-        <!-- EDIT: a few sentences. School, what you're into, what kind of internship you want -->
-        I'm in the Honors Program at the University of Florida studying Math and Computer Science (class of 2030).
-        This summer I was at Jane Street's AMP in NYC, where my team placed 2nd of 39 in an algorithm bot competition.
-        I also published a study on how pro athletes use visualization, and I'm the incoming president of UF's Tikkun Olam Makers chapter.
-        <!-- EDIT: say what kind of internship you want -->
-        I'm looking for internships where I can build real things with AI.
-      </p>
+      <h2 class="reveal">About</h2>
+      <div class="about reveal">
+        <p>
+          I'm in the Honors Program at the University of Florida studying Math and Computer Science, class of 2030.
+          This summer I was at Jane Street's AMP in New York, where my team placed 2nd of 39 in an algorithm bot competition.
+        </p>
+        <p>
+          I also published a study on how pro athletes use visualization, and I'm the incoming president of UF's Tikkun Olam Makers chapter.
+          I'm looking for internships where I can build real things with AI.
+        </p>
+      </div>
     </section>
 
     <!-- ===== CONTACT ===== -->
     <section id="contact">
-      <h2>Contact</h2>
-      <p>Want to work together? Reach out.</p>
-      <div class="links big">
-        <!-- EDIT: put your real links here -->
+      <h2 class="reveal">Let's build something.</h2>
+      <p class="reveal">The fastest way to reach me is LinkedIn.</p>
+      <div class="links big reveal">
+        <!-- EDIT: to add email, uncomment this and put your address in -->
         <!-- <a href="mailto:you@example.com">Email</a> -->
-        <a href="https://www.linkedin.com/in/aiden-karo-8562802b7/">LinkedIn</a>
-        <a href="https://github.com/aidenkaro10">GitHub</a>
+        <a href="https://www.linkedin.com/in/aiden-karo-8562802b7/">LinkedIn →</a>
+        <a href="https://github.com/aidenkaro10">GitHub →</a>
       </div>
     </section>
 
   </main>
 
   <footer>
-    <!-- The year updates on its own -->
-    © <span id="year"></span> Aiden Karo
+    <!-- The year updates on its own (see script.js) -->
+    <div class="foot">© <span id="year">2026</span> Aiden Karo</div>
   </footer>
 
-  <script>
-    // Puts the current year in the footer
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
