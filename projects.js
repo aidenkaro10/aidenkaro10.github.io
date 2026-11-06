@@ -36,7 +36,6 @@ window.PROJECTS = [
     status: "Live",
     line: "4 AIs answer, judge each other, and argue it out in 3D.",
     blurb: "Ask one question and four AI models answer it, then rank each other without knowing who wrote what. A chairman model writes one final verdict while the models argue it out in a 3D courtroom with voices and captions. Runs fully in your browser.",
-    stats: [["4", "models per question"], ["~$0.07", "per question"], ["0", "servers"]],
     steps: [
       { label: "Ask a question", tool: "React", say: "You type one question into the app." },
       { label: "4 models answer", tool: "OpenRouter", many: ["GPT", "Claude", "Gemini", "Grok"], say: "OpenRouter sends it to 4 models at the same time." },
@@ -80,7 +79,6 @@ window.PROJECTS = [
     status: "Live",
     line: "All your Canvas classes in one AI study app.",
     blurb: "Pulls all your Canvas courses into one place. You can chat with your class material, take quizzes made from your own lectures, plan your week, and see which topics you're weakest on.",
-    stats: [["49", "API routes"], ["6", "study modes"], ["Daily", "Canvas sync"]],
     steps: [
       { label: "Sync Canvas", tool: "Chrome extension", say: "A Chrome extension pulls your courses from Canvas every day." },
       { label: "Read syllabus + notes", tool: "Claude, Gemini", say: "Claude reads the syllabus, and lectures become a course wiki." },
@@ -98,7 +96,6 @@ window.PROJECTS = [
     status: "Live",
     line: "Text a bot anything. It becomes a wiki you can chat with.",
     blurb: "Send videos, screenshots, PDFs or voice memos to a Telegram bot. It breaks them down and builds a linked wiki of everything you've saved, and you can chat with it to pull up what you need.",
-    stats: [["5", "content types"], ["15 min", "auto-update cycle"]],
     steps: [
       { label: "Send it anything", tool: "Telegram bot", say: "You send a video, screenshot, PDF or voice memo to the bot." },
       { label: "Download it", tool: "yt-dlp", say: "It grabs the file, even from a link." },
@@ -117,7 +114,7 @@ window.PROJECTS = [
     status: "Live",
     line: "Watches 1,000 job boards and emails you your best matches.",
     blurb: "Checks about 1,000 company job boards twice a day. Every new internship gets scored against the student from 1 to 10 and sorted into reach, target or safety. The best ones get emailed out the same day.",
-    stats: [["~1,000", "job boards watched"], ["2x", "a day"], ["60+", "security tests"]],
+    stats: [["~1,000", "job boards watched"]],
     steps: [
       { label: "Find companies", tool: "Serper, GitHub", say: "It builds a list of about 1,000 companies that hire interns." },
       { label: "Check job boards", tool: "Greenhouse, Lever", say: "Twice a day, it checks every board for new postings." },
@@ -137,7 +134,6 @@ window.PROJECTS = [
     status: "Live",
     line: "Turns your clips into beat-synced reel intros.",
     blurb: "Upload your clips, pick a template, and it cuts them to the beat of the song. You get a 1080p reel intro, or a scrapbook-style YouTube thumbnail from your photos.",
-    stats: [["11", "intro templates"], ["13", "thumbnail templates"], ["1080p", "export"]],
     steps: [
       { label: "Pick a template", tool: "Templates", say: "Pick one of 11 intro styles or 13 thumbnail styles." },
       { label: "Upload clips", tool: "Supabase", say: "Sign in and upload your clips. They auto-delete after 24 hours." },
@@ -159,7 +155,7 @@ window.PROJECTS = [
     status: "Live",
     line: "An AI-made scroll film about becoming a founder in Israel.",
     blurb: "A scroll-driven film. You follow Shira from childhood on a kibbutz to a startup in Tel Aviv. Every scene, voice and piece of music was made with AI, then stitched into a website you scroll through. Made with Guy Taylor.",
-    stats: [["51", "AI video clips"], ["17", "narrated scenes"], ["~4 min", "of narration"]],
+    stats: [["51", "AI video clips"]],
     steps: [
       { label: "Research + script", tool: "Writing", say: "Research the story and write every scene." },
       { label: "Characters + frames", tool: "Nano Banana Pro", say: "AI draws character sheets and the first frame of each scene." },
@@ -183,7 +179,7 @@ window.PROJECTS = [
     status: "Live",
     line: "A new tab page in your school's colors, for any campus.",
     blurb: "A Chrome new tab page themed to your university. Your school's colors and campus photos, plus a clock, quick links, library and dining hours, and a focus timer. Works for over 2,000 US schools.",
-    stats: [["2,349", "universities"], ["9", "widgets"]],
+    stats: [["2,349", "universities"]],
     steps: [
       { label: "Pick your school", tool: "School dataset", say: "Pick from 2,349 US universities." },
       { label: "Apply the theme", tool: "React", say: "The page switches to your school's colors and links." },
@@ -204,7 +200,6 @@ window.PROJECTS = [
     status: "In progress",
     line: "Building my own sub-250 g camera drone for a Hawaii trip.",
     blurb: "I wanted a drone for a trip to Hawaii but didn't want to pay for one, so I'm learning to build it myself. The goal is a camera drone under 250 grams, light enough that it doesn't need FAA registration.",
-    stats: [["Under 250 g", "light enough to skip FAA registration"], ["DIY", "built from parts, not bought"]],
     steps: [
       { label: "Pick the parts", tool: "Frame, motors, flight controller", say: "Choose a frame, motors, flight controller, battery and camera." },
       { label: "Stay under 250 g", tool: "Weight budget", say: "Weigh every part so the whole drone stays under 250 grams." },
@@ -221,7 +216,6 @@ window.PROJECTS = [
     status: "In progress",
     line: "Raw footage in, captioned video with graphics out.",
     blurb: "A command-line tool that takes raw talking-head footage and turns it into a finished video. It cuts the silences and retakes, adds graphics, and burns in word-by-word captions. I approve each stage before it moves on.",
-    stats: [["7", "stages"], ["5", "approval checkpoints"]],
     steps: [
       { label: "Transcribe", tool: "Whisper", say: "Whisper writes out every word with timestamps." },
       { label: "Cut + clean audio", tool: "ffmpeg", say: "ffmpeg cuts silences and retakes, and evens out the volume." },
