@@ -66,11 +66,11 @@ window.PROJECTS = [
       { label: "Alert or call 911", tool: "ElevenLabs, Twilio", say: "Live alerts on the dashboard, and a voice agent calls if someone goes down." }
     ],
     stack: ["Python", "PyTorch", "scikit-learn", "ESP32 C++", "FastAPI", "Next.js", "Claude", "Qwen3 + LoRA", "Twilio"],
-    video: "assets/media/redline-demo.mp4",
-    poster: "assets/media/redline-demo.jpg",
+    video: "assets/media/redline-demo.mp4?v=2",
+    poster: "assets/media/redline-demo.jpg?v=2",
     tall: true,
     sound: true,
-    mediaAlt: "Demoing Redline to the SwampHacks judges: the crew dashboard flags a heat alert, then the phone app",
+    mediaAlt: "Demoing Redline to the SwampHacks judges: a heat spike turns the crew dashboard red, and the alert goes all the way to the phone",
     code: "https://github.com/aidenkaro10/redline"
   },
   {
@@ -145,6 +145,10 @@ window.PROJECTS = [
       { label: "Live preview", tool: "Remotion", say: "You watch it play in the browser before rendering." },
       { label: "Render 1080p", tool: "Remotion server", say: "The server renders a 1080p video or a thumbnail." }
     ],
+    video: "assets/media/intro-gators.mp4",
+    poster: "assets/media/intro-gators.jpg",
+    sound: true,
+    mediaAlt: "An intro made with Intro Maker: a Gators game day hype edit that opens on GATORS over the stadium fireworks, cut to the beat",
     stack: ["Next.js", "React", "Remotion", "three.js", "MediaPipe", "Supabase", "Docker"],
     live: "https://intro-maker-production.up.railway.app"
   },
@@ -163,9 +167,10 @@ window.PROJECTS = [
       { label: "Voices + music", tool: "ElevenLabs", say: "ElevenLabs makes the narration, voices and music." },
       { label: "Scroll website", tool: "JavaScript", say: "It all plays as you scroll, with pencil-sketch reveals." }
     ],
-    video: "assets/media/founder.mp4",
-    poster: "assets/media/founder.jpg",
-    mediaAlt: "Five scenes from the film: a kibbutz, army selection, a backpacking trip, a startup apartment, and a Tel Aviv office",
+    video: "assets/media/founder.mp4?v=2",
+    sound: true,
+    poster: "assets/media/founder.jpg?v=2",
+    mediaAlt: "Five scenes from the film, narrated: a kibbutz, army selection, a backpacking trip, a startup apartment, and a Tel Aviv office",
     stack: ["JavaScript", "HTML / CSS", "Python", "fal.ai", "ElevenLabs", "GitHub Pages"],
     live: "https://how-a-founder-is-made.vercel.app",
     liveText: "Watch it",
