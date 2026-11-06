@@ -85,8 +85,19 @@ function unlockSound() {
 }
 document.addEventListener("pointerdown", unlockSound, true);
 document.addEventListener("keydown", unlockSound, true);
-// switching tabs: go quiet when hidden, pick the sound back up when you come back
-document.addEventListener("visibilitychange", applySound);
+// switching tabs or leaving: pause every playing video, then pick them back up when you come back
+const pausedByLeaving = new Set();
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) {
+    document.querySelectorAll("video").forEach((v) => {
+      if (!v.paused) { pausedByLeaving.add(v); v.pause(); }
+    });
+  } else {
+    pausedByLeaving.forEach((v) => { if (v.isConnected) v.play().catch(() => {}); });
+    pausedByLeaving.clear();
+  }
+  applySound();
+});
 
 // the edit at the top: plays on its own (muted until sound is allowed), click it to pause
 const edit = document.getElementById("edit");
