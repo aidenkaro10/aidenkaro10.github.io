@@ -36,7 +36,8 @@ function pickSpeaker() {
 }
 
 function applySound() {
-  const speaker = sound.on && canPlaySound() ? pickSpeaker() : null;
+  // no sound from a tab you aren't looking at, so two open tabs never play over each other
+  const speaker = sound.on && canPlaySound() && !document.hidden ? pickSpeaker() : null;
   sound.videos.forEach((_, v) => { v.muted = v !== speaker; });
   sound.buttons.forEach((b) => {
     b.innerHTML = sound.on ? ICON_ON : ICON_OFF;
@@ -84,6 +85,8 @@ function unlockSound() {
 }
 document.addEventListener("pointerdown", unlockSound, true);
 document.addEventListener("keydown", unlockSound, true);
+// switching tabs: go quiet when hidden, pick the sound back up when you come back
+document.addEventListener("visibilitychange", applySound);
 
 // the edit at the top: plays on its own (muted until sound is allowed), click it to pause
 const edit = document.getElementById("edit");
