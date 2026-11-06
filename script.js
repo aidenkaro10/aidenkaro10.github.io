@@ -326,7 +326,6 @@ function showProject(index) {
   top.appendChild(el("h3", "", p.name));
   top.appendChild(badge(p.status));
   stage.appendChild(top);
-  stage.appendChild(el("p", "meta", p.tag + ", " + p.year));
 
   // big buttons right at the top: try it / watch it, and the code
   const actions = el("div", "stage-actions");
