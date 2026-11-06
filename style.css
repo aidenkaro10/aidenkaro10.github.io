@@ -390,10 +390,6 @@ h3 { font-family: var(--serif); font-weight: 400; font-size: 1.9rem; line-height
 .awards strong { font-family: var(--serif); font-weight: 400; font-size: 1.5rem; line-height: 1.2; }
 .awards span { color: var(--muted); text-align: right; }
 
-/* ===== SKILLS ===== */
-.skills { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px 40px; }
-.skills h3 { font-size: 1.5rem; margin-bottom: 12px; }
-
 /* ===== ABOUT / CONTACT ===== */
 .about { display: grid; grid-template-columns: 1fr; gap: 32px; }
 .about p, #contact p { color: var(--muted); font-size: 1.08rem; max-width: 520px; }
@@ -418,7 +414,7 @@ footer { padding-bottom: 48px; color: var(--muted); font-size: 0.85rem; }
 
 /* ===== TABLETS AND PHONES ===== */
 @media (max-width: 820px) {
-  .about, .skills { grid-template-columns: 1fr; }
+  .about { grid-template-columns: 1fr; }
   .hero-grid { grid-template-columns: 1fr; gap: 32px; }
   .edit { justify-self: start; max-width: 360px; }
   .job { grid-template-columns: 1fr; gap: 8px; }
