@@ -122,8 +122,6 @@ window.PROJECTS = [
       { label: "Save + track", tool: "Supabase", say: "Matches are saved so nothing gets sent twice." },
       { label: "Email the best", tool: "Gmail", say: "Anything 7 or higher lands in your inbox." }
     ],
-    image: "assets/media/internship-finder.jpg",
-    mediaAlt: "Internship Finder's home page: Every internship. The day it drops.",
     stack: ["Python", "GitHub Actions", "Supabase", "React", "Tailwind", "GSAP", "Playwright"],
     live: "https://internship-finder-nu.vercel.app"
   },
