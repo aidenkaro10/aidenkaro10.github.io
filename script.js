@@ -205,6 +205,16 @@ function buildMedia(p) {
     v.addEventListener("pause", sync);
     sync();
     fig.appendChild(btn);
+    if (p.sound) {
+      const snd = el("button", "media-btn media-sound", "Sound on");
+      snd.type = "button";
+      snd.addEventListener("click", () => {
+        v.muted = !v.muted;
+        if (!v.muted && v.paused) v.play().catch(() => {});
+      });
+      v.addEventListener("volumechange", () => { snd.textContent = v.muted ? "Sound on" : "Sound off"; });
+      fig.appendChild(snd);
+    }
     if (!calm) v.play().catch(() => {});
   } else {
     const img = el("img");
@@ -393,3 +403,18 @@ if (reelsBox && content.length) {
   document.getElementById("reels-prev").addEventListener("click", () => reelsBox.scrollBy({ left: -step(), behavior: calm ? "auto" : "smooth" }));
   document.getElementById("reels-next").addEventListener("click", () => reelsBox.scrollBy({ left: step(), behavior: calm ? "auto" : "smooth" }));
 }
+
+/* ==========================================================
+   ONLY ONE VIDEO MAKES SOUND AT A TIME.
+   When any video starts playing with sound, every other video goes quiet
+   (so the music at the top stops when you turn on a project video).
+   ========================================================== */
+function quietOthers(e) {
+  const v = e.target;
+  if (!(v instanceof HTMLVideoElement) || v.muted || v.paused) return;
+  document.querySelectorAll("video").forEach((other) => {
+    if (other !== v && !other.muted) other.muted = true;
+  });
+}
+document.addEventListener("play", quietOthers, true);
+document.addEventListener("volumechange", quietOthers, true);

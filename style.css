@@ -329,6 +329,7 @@ h3 { font-family: var(--serif); font-weight: 400; font-size: 1.9rem; line-height
   backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
 }
 .media-btn:hover { border-color: var(--muted); }
+.media .media-sound { right: auto; left: 12px; }
 .media-btn:active { opacity: 0.8; }
 
 /* ===== CONTENT CAROUSEL ===== */

@@ -25,6 +25,7 @@
    - mediaAlt: a sentence describing the video or picture, for screen readers
    - stack: the tech chips
    - live, code: links. Leave them out if there's no public link.
+   - sound: true if the video should have a Sound on button (only one video plays sound at a time)
    ========================================================== */
 
 window.PROJECTS = [
@@ -46,7 +47,7 @@ window.PROJECTS = [
     stack: ["React", "Vite", "three.js", "OpenRouter", "Web Speech API", "Tailwind", "GitHub Actions"],
     image: "assets/llm-council.jpg",
     mediaAlt: "LLM Council: AI lawyers in a 3D courtroom, with the verdict panel on the left",
-    live: "https://aidenkaro10.github.io/llm-council/",
+    live: "https://llm-council-lilac.vercel.app",
     code: "https://github.com/aidenkaro10/llm-council"
   },
   {
@@ -75,7 +76,7 @@ window.PROJECTS = [
     name: "Study Brain",
     tag: "Web app",
     year: "2026",
-    status: "In progress",
+    status: "Live",
     line: "All your Canvas classes in one AI study app.",
     blurb: "Pulls all your Canvas courses into one place. You can chat with your class material, take quizzes made from your own lectures, plan your week, and see which topics you're weakest on.",
     stats: [["49", "API routes"], ["6", "study modes"], ["Daily", "Canvas sync"]],
@@ -86,13 +87,14 @@ window.PROJECTS = [
       { label: "Chat, quiz, plan", tool: "Flask + Claude", say: "Chat, quiz and planner tabs all run on Claude." },
       { label: "Track weak spots", tool: "Calendar export", say: "It tracks weak topics and exports your plan to your calendar." }
     ],
-    stack: ["Python", "Flask", "Claude API", "Gemini", "Supabase", "Chrome extension", "three.js", "Docker"]
+    stack: ["Python", "Flask", "Claude API", "Gemini", "Supabase", "Chrome extension", "three.js", "Docker"],
+    live: "https://study-brain-production.up.railway.app"
   },
   {
     name: "Second Brain",
     tag: "AI tool",
     year: "2026",
-    status: "On GitHub",
+    status: "Live",
     line: "Text a bot anything. It becomes a wiki you can chat with.",
     blurb: "Send videos, screenshots, PDFs or voice memos to a Telegram bot. It breaks them down and builds a linked wiki of everything you've saved, and you can chat with it to pull up what you need.",
     stats: [["5", "content types"], ["15 min", "auto-update cycle"]],
@@ -104,13 +106,14 @@ window.PROJECTS = [
       { label: "Chat with notes", tool: "Flask", say: "Ask a question and it answers from your own notes." }
     ],
     stack: ["Python", "Flask", "Gemini", "Claude API", "yt-dlp", "Supabase", "Markdown"],
+    live: "https://second-brain-production-5ed3.up.railway.app",
     code: "https://github.com/aidenkaro10/second-brain"
   },
   {
     name: "Internship Finder",
     tag: "Automation",
     year: "2026",
-    status: "In progress",
+    status: "Live",
     line: "Watches 1,000 job boards and emails you your best matches.",
     blurb: "Checks about 1,000 company job boards twice a day. Every new internship gets scored against the student from 1 to 10 and sorted into reach, target or safety. The best ones get emailed out the same day.",
     stats: [["~1,000", "job boards watched"], ["2x", "a day"], ["60+", "security tests"]],
@@ -121,13 +124,16 @@ window.PROJECTS = [
       { label: "Save + track", tool: "Supabase", say: "Matches are saved so nothing gets sent twice." },
       { label: "Email the best", tool: "Gmail", say: "Anything 7 or higher lands in your inbox." }
     ],
-    stack: ["Python", "GitHub Actions", "Supabase", "React", "Tailwind", "GSAP", "Playwright"]
+    image: "assets/media/internship-finder.jpg",
+    mediaAlt: "Internship Finder's home page: Every internship. The day it drops.",
+    stack: ["Python", "GitHub Actions", "Supabase", "React", "Tailwind", "GSAP", "Playwright"],
+    live: "https://internship-finder-nu.vercel.app"
   },
   {
     name: "Intro Maker",
     tag: "Web app",
     year: "2026",
-    status: "In progress",
+    status: "Live",
     line: "Turns your clips into beat-synced reel intros.",
     blurb: "Upload your clips, pick a template, and it cuts them to the beat of the song. You get a 1080p reel intro, or a scrapbook-style YouTube thumbnail from your photos.",
     stats: [["11", "intro templates"], ["13", "thumbnail templates"], ["1080p", "export"]],
@@ -138,7 +144,8 @@ window.PROJECTS = [
       { label: "Live preview", tool: "Remotion", say: "You watch it play in the browser before rendering." },
       { label: "Render 1080p", tool: "Remotion server", say: "The server renders a 1080p video or a thumbnail." }
     ],
-    stack: ["Next.js", "React", "Remotion", "three.js", "MediaPipe", "Supabase", "Docker"]
+    stack: ["Next.js", "React", "Remotion", "three.js", "MediaPipe", "Supabase", "Docker"],
+    live: "https://intro-maker-production.up.railway.app"
   },
   {
     name: "How a Founder Is Made",
@@ -159,7 +166,7 @@ window.PROJECTS = [
     poster: "assets/media/founder.jpg",
     mediaAlt: "Five scenes from the film: a kibbutz, army selection, a backpacking trip, a startup apartment, and a Tel Aviv office",
     stack: ["JavaScript", "HTML / CSS", "Python", "fal.ai", "ElevenLabs", "GitHub Pages"],
-    live: "https://aidenkaro10.github.io/how-a-founder-is-made/",
+    live: "https://how-a-founder-is-made.vercel.app",
     liveText: "Watch it",
     code: "https://github.com/aidenkaro10/how-a-founder-is-made"
   },
@@ -181,7 +188,7 @@ window.PROJECTS = [
     image: "assets/media/campus-tab.jpg",
     mediaAlt: "Campus Tab's start page: a night skyline of a campus clock tower with a search box to find your university",
     stack: ["React", "TypeScript", "Vite", "Chrome Extension APIs", "Playwright"],
-    live: "https://aidenkaro10.github.io/campus-tab/",
+    live: "https://campus-tab.vercel.app",
     code: "https://github.com/aidenkaro10/campus-tab"
   },
   {
