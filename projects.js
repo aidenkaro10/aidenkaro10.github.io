@@ -21,6 +21,7 @@
        many  = optional little chips inside a step (like 4 AI models)
    - video + poster: a short muted clip that loops, and the picture shown before it loads. Optional.
    - image: a screenshot, if there's no video. Optional.
+   - tall: true if the video is vertical (filmed on a phone), so it isn't cropped
    - mediaAlt: a sentence describing the video or picture, for screen readers
    - stack: the tech chips
    - live, code: links. Leave them out if there's no public link.
@@ -64,9 +65,10 @@ window.PROJECTS = [
       { label: "Alert or call 911", tool: "ElevenLabs, Twilio", say: "Live alerts on the dashboard, and a voice agent calls if someone goes down." }
     ],
     stack: ["Python", "PyTorch", "scikit-learn", "ESP32 C++", "FastAPI", "Next.js", "Claude", "Qwen3 + LoRA", "Twilio"],
-    video: "assets/media/redline.mp4",
-    poster: "assets/media/redline.jpg",
-    mediaAlt: "The Redline wristband on a worker's arm, zooming out to a job site with cranes and crews",
+    video: "assets/media/redline-demo.mp4",
+    poster: "assets/media/redline-demo.jpg",
+    tall: true,
+    mediaAlt: "Demoing Redline to the SwampHacks judges: the crew dashboard flags a heat alert, then the phone app",
     code: "https://github.com/aidenkaro10/redline"
   },
   {
@@ -183,6 +185,23 @@ window.PROJECTS = [
     code: "https://github.com/aidenkaro10/campus-tab"
   },
   {
+    name: "Mini Camera Drone",
+    tag: "Hardware",
+    year: "2026",
+    status: "In progress",
+    line: "Building my own sub-250 g camera drone for a Hawaii trip.",
+    blurb: "I wanted a drone for a trip to Hawaii but didn't want to pay for one, so I'm learning to build it myself. The goal is a camera drone under 250 grams, light enough that it doesn't need FAA registration.",
+    stats: [["Under 250 g", "light enough to skip FAA registration"], ["DIY", "built from parts, not bought"]],
+    steps: [
+      { label: "Pick the parts", tool: "Frame, motors, flight controller", say: "Choose a frame, motors, flight controller, battery and camera." },
+      { label: "Stay under 250 g", tool: "Weight budget", say: "Weigh every part so the whole drone stays under 250 grams." },
+      { label: "Solder + build", tool: "Soldering iron", say: "Solder the electronics and put the frame together." },
+      { label: "Set up + tune", tool: "Flight software", say: "Flash the flight controller and tune it so it flies smooth." },
+      { label: "Film Hawaii", tool: "Camera", say: "Take it to Hawaii and film the trip." }
+    ],
+    stack: ["Electronics", "Soldering", "Flight controller", "FPV camera"]
+  },
+  {
     name: "Video Editor",
     tag: "Automation",
     year: "2026",
@@ -212,3 +231,19 @@ window.FLOWS = {
     { label: "Show up first", tool: "Google, AI, Twilio", say: "The business ranks higher on Google and in AI answers." }
   ]
 };
+
+/* ==========================================================
+   CONTENT: your Instagram videos for the carousel.
+   HOW TO ADD ONE:
+   1. Put the video file in assets/content/ (like assets/content/video1.mp4)
+   2. Copy a { ... }, block below and fill it in:
+      video   = the file
+      views   = what shows under it, like "4.2K views"
+      caption = a few words about it
+      link    = the Instagram post's link
+   The section shows up on the site as soon as there's one video here.
+   ========================================================== */
+window.INSTAGRAM = "https://www.instagram.com/";   // EDIT: your profile link
+window.CONTENT = [
+  // { video: "assets/content/video1.mp4", views: "4.2K views", caption: "What the video is about", link: "https://www.instagram.com/reel/..." },
+];

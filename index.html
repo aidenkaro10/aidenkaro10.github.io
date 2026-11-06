@@ -24,8 +24,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-  <!-- All the styling lives in style.css -->
-  <link rel="stylesheet" href="style.css">
+  <!-- All the styling lives in style.css. Change the ?v= number when you update files, so browsers grab the new version -->
+  <link rel="stylesheet" href="style.css?v=20261106e">
 </head>
 <body>
   <!-- lets keyboard users jump past the menu -->
@@ -48,7 +48,7 @@
       <div class="hero-grid">
         <div class="hero-text">
           <!-- my name as a spray-painted graffiti tag. All drawn in code (SVG), so it stays sharp at any size.
-               Layers, bottom to top: colored mist, 3D shadow, cream outline, paint fill, halftone dots, shine, stars. -->
+               Layers, bottom to top: colored mist, speckles, 3D shadow, cream outline, paint fill, shine, stars. -->
           <h1 class="tag">
             <svg viewBox="0 0 1000 300" role="img" aria-labelledby="tag-title">
               <title id="tag-title">Aiden Karo</title>
@@ -66,10 +66,6 @@
                   <stop offset="0" stop-color="#fff" stop-opacity="0.75"/>
                   <stop offset="1" stop-color="#fff" stop-opacity="0"/>
                 </linearGradient>
-                <!-- little dots inside the letters, like a halftone print -->
-                <pattern id="dots" width="14" height="14" patternUnits="userSpaceOnUse" patternTransform="rotate(30)">
-                  <circle cx="7" cy="7" r="2.2" fill="#140a26" fill-opacity="0.28"/>
-                </pattern>
                 <!-- overspray: blur the paint and rough up its edges -->
                 <filter id="mist" x="-20%" y="-40%" width="140%" height="180%">
                   <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="3" seed="7" result="noise"/>
@@ -82,6 +78,11 @@
                   <feColorMatrix in="grain" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 9 -5.2" result="dots"/>
                   <feMorphology in="SourceGraphic" operator="dilate" radius="22" result="wide"/>
                   <feComposite in="wide" in2="dots" operator="in"/>
+                </filter>
+                <!-- slight wobble so the lines look hand-painted -->
+                <filter id="wobble" x="-5%" y="-10%" width="110%" height="120%">
+                  <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="4" result="w"/>
+                  <feDisplacementMap in="SourceGraphic" in2="w" scale="7"/>
                 </filter>
                 <!-- rough edge for the spray-on wipe -->
                 <filter id="rough">
@@ -97,36 +98,36 @@
                 <g transform="rotate(-4 500 150)">
                   <!-- colored mist on the wall -->
                   <g class="mist" filter="url(#mist)" fill="url(#paint)" stroke="url(#paint)" stroke-width="30" stroke-linejoin="round">
-                    <text class="tag-text" x="30" y="214" textLength="940" lengthAdjust="spacingAndGlyphs">Aiden Karo</text>
+                    <text class="tag-text" x="30" y="214" textLength="940" lengthAdjust="spacingAndGlyphs" rotate="-5 4 -3 6 -2 0 -4 5 -6 3" dy="0 -6 8 -6 10 -6 -8 13 -8 10">Aiden Karo</text>
                   </g>
                   <!-- paint speckles -->
                   <g class="speckle" filter="url(#speckle)" fill="url(#paint)">
-                    <text class="tag-text" x="30" y="214" textLength="940" lengthAdjust="spacingAndGlyphs">Aiden Karo</text>
-                    <path d="M92 196 h16 v46 q0 12 -8 12 q-8 0 -8 -12 z M268 196 h16 v30 q0 12 -8 12 q-8 0 -8 -12 z M452 196 h16 v64 q0 12 -8 12 q-8 0 -8 -12 z M628 196 h16 v38 q0 12 -8 12 q-8 0 -8 -12 z M902 196 h16 v54 q0 12 -8 12 q-8 0 -8 -12 z"/>
+                    <text class="tag-text" x="30" y="214" textLength="940" lengthAdjust="spacingAndGlyphs" rotate="-5 4 -3 6 -2 0 -4 5 -6 3" dy="0 -6 8 -6 10 -6 -8 13 -8 10">Aiden Karo</text>
+                    <path d="M60 196 h13 v52 q0 9 -6 9 q-6 0 -6 -9 z M432 196 h9 v30 q0 6 -4 6 q-4 0 -4 -6 z M906 196 h15 v66 q0 10 -8 10 q-8 0 -8 -10 z"/>
                   </g>
+                  <g filter="url(#wobble)">
                   <!-- 3D shadow -->
                   <g transform="translate(9 11)" fill="#24104a" stroke="#24104a" stroke-width="22" stroke-linejoin="round">
-                    <text class="tag-text" x="30" y="214" textLength="940" lengthAdjust="spacingAndGlyphs">Aiden Karo</text>
-                    <path d="M92 196 h16 v46 q0 12 -8 12 q-8 0 -8 -12 z M268 196 h16 v30 q0 12 -8 12 q-8 0 -8 -12 z M452 196 h16 v64 q0 12 -8 12 q-8 0 -8 -12 z M628 196 h16 v38 q0 12 -8 12 q-8 0 -8 -12 z M902 196 h16 v54 q0 12 -8 12 q-8 0 -8 -12 z"/>
+                    <text class="tag-text" x="30" y="214" textLength="940" lengthAdjust="spacingAndGlyphs" rotate="-5 4 -3 6 -2 0 -4 5 -6 3" dy="0 -6 8 -6 10 -6 -8 13 -8 10">Aiden Karo</text>
+                    <path d="M60 196 h13 v52 q0 9 -6 9 q-6 0 -6 -9 z M432 196 h9 v30 q0 6 -4 6 q-4 0 -4 -6 z M906 196 h15 v66 q0 10 -8 10 q-8 0 -8 -10 z"/>
                   </g>
                   <!-- cream outline -->
                   <g fill="none" stroke="#f3efe8" stroke-width="16" stroke-linejoin="round">
-                    <text class="tag-text" x="30" y="214" textLength="940" lengthAdjust="spacingAndGlyphs">Aiden Karo</text>
-                    <path d="M92 196 h16 v46 q0 12 -8 12 q-8 0 -8 -12 z M268 196 h16 v30 q0 12 -8 12 q-8 0 -8 -12 z M452 196 h16 v64 q0 12 -8 12 q-8 0 -8 -12 z M628 196 h16 v38 q0 12 -8 12 q-8 0 -8 -12 z M902 196 h16 v54 q0 12 -8 12 q-8 0 -8 -12 z"/>
+                    <text class="tag-text" x="30" y="214" textLength="940" lengthAdjust="spacingAndGlyphs" rotate="-5 4 -3 6 -2 0 -4 5 -6 3" dy="0 -6 8 -6 10 -6 -8 13 -8 10">Aiden Karo</text>
+                    <path d="M60 196 h13 v52 q0 9 -6 9 q-6 0 -6 -9 z M432 196 h9 v30 q0 6 -4 6 q-4 0 -4 -6 z M906 196 h15 v66 q0 10 -8 10 q-8 0 -8 -10 z"/>
                   </g>
                   <!-- the paint itself -->
                   <g fill="url(#paint)">
-                    <text class="tag-text" x="30" y="214" textLength="940" lengthAdjust="spacingAndGlyphs">Aiden Karo</text>
-                    <path d="M92 196 h16 v46 q0 12 -8 12 q-8 0 -8 -12 z M268 196 h16 v30 q0 12 -8 12 q-8 0 -8 -12 z M452 196 h16 v64 q0 12 -8 12 q-8 0 -8 -12 z M628 196 h16 v38 q0 12 -8 12 q-8 0 -8 -12 z M902 196 h16 v54 q0 12 -8 12 q-8 0 -8 -12 z"/>
+                    <text class="tag-text" x="30" y="214" textLength="940" lengthAdjust="spacingAndGlyphs" rotate="-5 4 -3 6 -2 0 -4 5 -6 3" dy="0 -6 8 -6 10 -6 -8 13 -8 10">Aiden Karo</text>
+                    <path d="M60 196 h13 v52 q0 9 -6 9 q-6 0 -6 -9 z M432 196 h9 v30 q0 6 -4 6 q-4 0 -4 -6 z M906 196 h15 v66 q0 10 -8 10 q-8 0 -8 -10 z"/>
                   </g>
-                  <!-- halftone dots and the shine -->
-                  <text class="tag-text" x="30" y="214" textLength="940" lengthAdjust="spacingAndGlyphs" fill="url(#dots)">Aiden Karo</text>
-                  <text class="tag-text" x="30" y="214" textLength="940" lengthAdjust="spacingAndGlyphs" fill="url(#shine)">Aiden Karo</text>
+                  <!-- the shine -->
+                  <text class="tag-text" x="30" y="214" textLength="940" lengthAdjust="spacingAndGlyphs" rotate="-5 4 -3 6 -2 0 -4 5 -6 3" dy="0 -6 8 -6 10 -6 -8 13 -8 10" fill="url(#shine)">Aiden Karo</text>
+                  </g>
                 </g>
                 <!-- sparkles -->
                 <g class="stars" fill="#fff">
                   <path class="star" d="M70 40 l6 18 l18 6 l-18 6 l-6 18 l-6 -18 l-18 -6 l18 -6 z"/>
-                  <path class="star s2" d="M560 22 l4 12 l12 4 l-12 4 l-4 12 l-4 -12 l-12 -4 l12 -4 z"/>
                   <path class="star s3" d="M950 214 l5 15 l15 5 l-15 5 l-5 15 l-5 -15 l-15 -5 l15 -5 z"/>
                 </g>
               </g>
@@ -222,6 +223,21 @@
       <noscript><p class="section-sub">Turn on JavaScript to see the projects, or visit <a href="https://github.com/aidenkaro10">my GitHub</a>.</p></noscript>
     </section>
 
+    <!-- ===== CONTENT (Instagram videos) =====
+         The cards are built by script.js from CONTENT in projects.js.
+         This whole section stays hidden until CONTENT has at least one video. -->
+    <section id="content" hidden>
+      <h2 class="reveal">Content</h2>
+      <p class="section-sub reveal" id="content-sub">Short videos I make. A few thousand views each.</p>
+      <div class="carousel reveal">
+        <div class="reels" id="reels"></div>
+        <div class="carousel-nav">
+          <button type="button" class="arrow" id="reels-prev" aria-label="Previous videos">‹</button>
+          <button type="button" class="arrow" id="reels-next" aria-label="Next videos">›</button>
+        </div>
+      </div>
+    </section>
+
     <!-- ===== AWARDS ===== -->
     <section id="awards">
       <h2 class="reveal">Awards</h2>
@@ -229,7 +245,6 @@
         <li><strong>Gator Quant Hacks</strong><span>1st place, Systematic Trading track</span></li>
         <li><strong>UF Gator AI Hackathon</strong><span>Best Wellness App</span></li>
         <li><strong>SwampHacks XII</strong><span>3rd place, Sperry Tech PlanIT Control track</span></li>
-        <li><strong>Eitanim Marketing Competition</strong><span>1st place</span></li>
       </ul>
     </section>
 
@@ -251,10 +266,6 @@
         <p>
           I'm in the Honors Program at the University of Florida studying Math and Computer Science, class of 2030.
           This summer I was at Jane Street AMP, studying number theory, combinatorics, and computer science.
-        </p>
-        <p>
-          I also published a study on how pro athletes use visualization, and I'm the incoming president of UF's Tikkun Olam Makers chapter. I'm also in TAMID, where I'll be a full-stack developer for startup clients starting January 2027.
-          I'm looking for internships where I can build real things with AI.
         </p>
       </div>
     </section>
@@ -278,7 +289,7 @@
     <div class="foot">© <span id="year">2026</span> Aiden Karo</div>
   </footer>
 
-  <script src="projects.js"></script>
-  <script src="script.js"></script>
+  <script src="projects.js?v=20261106e"></script>
+  <script src="script.js?v=20261106e"></script>
 </body>
 </html>

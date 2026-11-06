@@ -183,7 +183,7 @@ function badge(text) {
 // A looping video clip (with a pause button) or a screenshot
 function buildMedia(p) {
   if (!p.video && !p.image) return null;
-  const fig = el("figure", "media");
+  const fig = el("figure", p.tall ? "media tall" : "media");
 
   if (p.video) {
     const v = el("video");
@@ -335,4 +335,61 @@ if (edit) {
       document.addEventListener("keydown", unmute, true);
     });
   }
+}
+
+/* ==========================================================
+   CONTENT CAROUSEL: a sideways row of my Instagram videos.
+   Each one plays (muted) while it's on screen, and opens the post when tapped.
+   ========================================================== */
+const reelsBox = document.getElementById("reels");
+const content = window.CONTENT || [];
+if (reelsBox && content.length) {
+  document.getElementById("content").hidden = false;
+
+  // link to the profile in the line under the heading
+  const sub = document.getElementById("content-sub");
+  if (window.INSTAGRAM && sub) {
+    sub.appendChild(document.createTextNode(" "));
+    const a = el("a", "", "See more on Instagram");
+    a.href = window.INSTAGRAM;
+    sub.appendChild(a);
+  }
+
+  const vids = content.map((c) => {
+    const card = el("a", "reel-card");
+    card.href = c.link || window.INSTAGRAM || "#";
+    card.target = "_blank";
+    card.rel = "noopener";
+    card.setAttribute("aria-label", (c.caption || "Instagram video") + (c.views ? ", " + c.views : ""));
+
+    const v = el("video");
+    v.src = c.video;
+    if (c.poster) v.poster = c.poster;
+    v.muted = true;
+    v.loop = true;
+    v.playsInline = true;
+    v.preload = "metadata";
+    v.setAttribute("aria-hidden", "true");
+    card.appendChild(v);
+
+    const info = el("span", "reel-info");
+    if (c.views) info.appendChild(el("strong", "", c.views));
+    if (c.caption) info.appendChild(el("span", "", c.caption));
+    card.appendChild(info);
+    reelsBox.appendChild(card);
+    return v;
+  });
+
+  // play only the videos you can see
+  if ("IntersectionObserver" in window && !calm) {
+    const seen = new IntersectionObserver((entries) => {
+      entries.forEach((e) => (e.isIntersecting ? e.target.play().catch(() => {}) : e.target.pause()));
+    }, { threshold: 0.6 });
+    vids.forEach((v) => seen.observe(v));
+  }
+
+  // arrow buttons scroll one card at a time
+  const step = () => (reelsBox.firstElementChild ? reelsBox.firstElementChild.offsetWidth + 16 : 240);
+  document.getElementById("reels-prev").addEventListener("click", () => reelsBox.scrollBy({ left: -step(), behavior: calm ? "auto" : "smooth" }));
+  document.getElementById("reels-next").addEventListener("click", () => reelsBox.scrollBy({ left: step(), behavior: calm ? "auto" : "smooth" }));
 }

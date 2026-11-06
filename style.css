@@ -97,7 +97,8 @@ h2 {
 /* my name, spray-painted. The art itself is the SVG in index.html */
 .tag { margin: 0 0 8px -12px; line-height: 0; }
 .tag svg { display: block; width: 100%; max-width: 680px; height: auto; overflow: visible; }
-.tag-text { font-family: "Bagel Fat One", var(--sans); font-size: 196px; }
+.tag-text { font-family: "Bagel Fat One", var(--sans); font-size: 190px; }
+.tagline { font-family: var(--serif); }
 .mist { opacity: 0.55; }
 .speckle { opacity: 0.7; }
 .star { transform-box: fill-box; transform-origin: center; }
@@ -315,6 +316,9 @@ h3 { font-family: var(--serif); font-weight: 400; font-size: 1.9rem; line-height
 /* the video or screenshot at the top of a project */
 .media { position: relative; margin: 0; border-radius: 14px; overflow: hidden; border: 1px solid var(--line); background: var(--bg); }
 .media video, .media img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
+/* vertical phone videos: shown full height in the middle instead of cropped */
+.media.tall { display: flex; justify-content: center; background: var(--bg); }
+.media.tall video { width: auto; height: min(560px, 70vh); aspect-ratio: 9 / 16; }
 .media figcaption { padding: 10px 14px; font-size: 0.85rem; color: var(--muted); }
 .media-btn {
   position: absolute; right: 12px; bottom: 12px;
@@ -326,6 +330,41 @@ h3 { font-family: var(--serif); font-weight: 400; font-size: 1.9rem; line-height
 }
 .media-btn:hover { border-color: var(--muted); }
 .media-btn:active { opacity: 0.8; }
+
+/* ===== CONTENT CAROUSEL ===== */
+.carousel { position: relative; }
+.reels {
+  display: flex; gap: 16px;
+  overflow-x: auto; scroll-snap-type: x mandatory;
+  padding-bottom: 8px; scrollbar-width: none;
+}
+.reels::-webkit-scrollbar { display: none; }
+.reel-card {
+  position: relative; flex: 0 0 220px; aspect-ratio: 9 / 16;
+  border-radius: 16px; overflow: hidden;
+  border: 1px solid var(--line); background: var(--card);
+  scroll-snap-align: start; text-decoration: none;
+  transition: border-color 0.2s;
+}
+.reel-card:hover { border-color: var(--muted); }
+.reel-card video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.reel-info {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  padding: 40px 14px 14px;
+  display: flex; flex-direction: column; gap: 2px;
+  background: linear-gradient(to top, color-mix(in srgb, var(--bg) 90%, transparent), transparent);
+}
+.reel-info strong { font-weight: 600; font-size: 0.95rem; }
+.reel-info span { font-size: 0.82rem; color: var(--muted); line-height: 1.35; }
+.carousel-nav { display: flex; gap: 8px; margin-top: 16px; }
+.arrow {
+  font: inherit; font-size: 1.3rem; line-height: 1;
+  width: 44px; height: 44px; border-radius: 50%; cursor: pointer;
+  color: var(--text); background: var(--card); border: 1px solid var(--line);
+}
+.arrow:hover { border-color: var(--muted); }
+.arrow:active { opacity: 0.8; }
+#content-sub a { color: var(--text); }
 
 /* ===== AWARDS ===== */
 .awards { list-style: none; }
@@ -343,7 +382,7 @@ h3 { font-family: var(--serif); font-weight: 400; font-size: 1.9rem; line-height
 .skills h3 { font-size: 1.5rem; margin-bottom: 12px; }
 
 /* ===== ABOUT / CONTACT ===== */
-.about { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.about { display: grid; grid-template-columns: 1fr; gap: 32px; }
 .about p, #contact p { color: var(--muted); font-size: 1.08rem; max-width: 520px; }
 .links.big { font-size: 1.15rem; margin-top: 28px; }
 #contact { padding-bottom: 72px; }
@@ -373,6 +412,7 @@ footer { padding-bottom: 48px; color: var(--muted); font-size: 0.85rem; }
   .projects { grid-template-columns: 1fr; }
   /* on small screens the project list becomes a row you swipe sideways */
   .project-list { position: static; flex-direction: row; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 6px; }
+  .reel-card { flex-basis: 180px; }
   .pick { flex: 0 0 220px; scroll-snap-align: start; background: var(--card); border-color: var(--line); }
 }
 @media (max-width: 600px) {
