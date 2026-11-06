@@ -130,6 +130,17 @@ h2 {
 }
 .edit video { width: 100%; height: 100%; object-fit: cover; display: block; }
 .edit video { cursor: pointer; }
+/* the small speaker button on videos with sound */
+.sound-btn {
+  position: absolute; left: 12px; bottom: 12px; z-index: 2;
+  width: 40px; height: 40px; border-radius: 50%;
+  display: grid; place-items: center; cursor: pointer;
+  color: var(--text); background: color-mix(in srgb, var(--bg) 70%, transparent);
+  border: 1px solid var(--line);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+}
+.sound-btn:hover { border-color: var(--muted); }
+.sound-btn:active { opacity: 0.8; }
 
 /* ===== OPENING ANIMATION =====
    Only runs when JavaScript is on, and never for people who asked for less motion. */
@@ -309,6 +320,8 @@ h3 { font-family: var(--serif); font-weight: 400; font-size: 1.9rem; line-height
 .stage-top { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
 .stage h3 { font-size: 2.6rem; }
 .stage-blurb { color: var(--muted); }
+.stage-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn.big { min-height: 52px; padding: 0 30px; font-size: 1.05rem; font-weight: 600; }
 .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; }
 .stat { display: flex; flex-direction: column; border-top: 1px solid var(--line); padding-top: 10px; }
 .stat strong { font-family: var(--serif); font-weight: 400; font-size: 2rem; line-height: 1; color: var(--accent); }
@@ -329,7 +342,6 @@ h3 { font-family: var(--serif); font-weight: 400; font-size: 1.9rem; line-height
   backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
 }
 .media-btn:hover { border-color: var(--muted); }
-.media .media-sound { right: auto; left: 12px; }
 .media-btn:active { opacity: 0.8; }
 
 /* ===== CONTENT CAROUSEL ===== */

@@ -8,6 +8,92 @@ document.getElementById("year").textContent = new Date().getFullYear();
 // True if the visitor asked their device for less motion
 const calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+/* ==========================================================
+   SOUND: only one video plays sound at a time.
+   - Sound is on by default. One small speaker button on each video turns it on or off everywhere.
+   - Whichever video with sound is on screen gets the audio. The most recent one to show up wins,
+     so when the Redline demo scrolls into view, the music at the top goes quiet and Redline plays.
+   - Browsers block sound until the visitor clicks or presses a key once. Until then videos play
+     muted, and the sound comes on at their first click.
+   ========================================================== */
+const sound = { on: true, videos: new Map(), buttons: new Set() };
+
+// little speaker icons: plain = sound on, with a line through it = sound off
+const ICON_ON = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z" fill="currentColor"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>';
+const ICON_OFF = '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z" fill="currentColor"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/><line x1="3" y1="3" x2="21" y2="21"/></svg>';
+
+// has the visitor clicked or pressed a key yet? (browsers need that before sound)
+const canPlaySound = () => !navigator.userActivation || navigator.userActivation.hasBeenActive;
+
+// which video should be heard right now: the newest one on screen that's playing
+function pickSpeaker() {
+  let best = null, bestTime = -1;
+  sound.videos.forEach((info, v) => {
+    if (!v.isConnected || v.paused || info.since < 0) return;
+    if (info.since > bestTime) { best = v; bestTime = info.since; }
+  });
+  return best;
+}
+
+function applySound() {
+  const speaker = sound.on && canPlaySound() ? pickSpeaker() : null;
+  sound.videos.forEach((_, v) => { v.muted = v !== speaker; });
+  sound.buttons.forEach((b) => {
+    b.innerHTML = sound.on ? ICON_ON : ICON_OFF;
+    b.setAttribute("aria-label", sound.on ? "Turn sound off" : "Turn sound on");
+    b.setAttribute("aria-pressed", String(sound.on));
+  });
+}
+
+// watch which sound videos are on screen
+const soundWatcher = "IntersectionObserver" in window
+  ? new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        const info = sound.videos.get(e.target);
+        if (!info) return;
+        info.since = e.intersectionRatio >= 0.5 ? performance.now() : -1;
+      });
+      applySound();
+    }, { threshold: [0, 0.5] })
+  : null;
+
+// give a video sound: adds the speaker button to its box and lets it take the audio
+function addSound(video, box) {
+  sound.videos.set(video, { since: soundWatcher ? -1 : performance.now() });
+  if (soundWatcher) soundWatcher.observe(video);
+  video.addEventListener("play", applySound);
+  video.addEventListener("pause", applySound);
+
+  const btn = el("button", "sound-btn");
+  btn.type = "button";
+  btn.addEventListener("click", (e) => {
+    e.stopPropagation(); // don't also pause the video
+    sound.on = !sound.on;
+    applySound();
+  });
+  sound.buttons.add(btn);
+  box.appendChild(btn);
+  applySound();
+}
+
+// the first click or key press anywhere unlocks sound
+function unlockSound() {
+  document.removeEventListener("pointerdown", unlockSound, true);
+  document.removeEventListener("keydown", unlockSound, true);
+  setTimeout(applySound, 0);
+}
+document.addEventListener("pointerdown", unlockSound, true);
+document.addEventListener("keydown", unlockSound, true);
+
+// the edit at the top: plays on its own (muted until sound is allowed), click it to pause
+const edit = document.getElementById("edit");
+if (edit) {
+  edit.muted = true;
+  edit.addEventListener("click", () => { edit.paused ? edit.play().catch(() => {}) : edit.pause(); });
+  addSound(edit, edit.parentElement);
+  if (!calm) edit.play().catch(() => {});
+}
+
 // Fade things up as they scroll into view
 const items = document.querySelectorAll(".reveal");
 if ("IntersectionObserver" in window) {
@@ -205,17 +291,8 @@ function buildMedia(p) {
     v.addEventListener("pause", sync);
     sync();
     fig.appendChild(btn);
-    if (p.sound) {
-      const snd = el("button", "media-btn media-sound", "Sound on");
-      snd.type = "button";
-      snd.addEventListener("click", () => {
-        v.muted = !v.muted;
-        if (!v.muted && v.paused) v.play().catch(() => {});
-      });
-      v.addEventListener("volumechange", () => { snd.textContent = v.muted ? "Sound on" : "Sound off"; });
-      fig.appendChild(snd);
-    }
     if (!calm) v.play().catch(() => {});
+    if (p.sound) addSound(v, fig);
   } else {
     const img = el("img");
     img.src = p.image;
@@ -248,6 +325,12 @@ function showProject(index) {
   stage.appendChild(top);
   stage.appendChild(el("p", "meta", p.tag + ", " + p.year));
 
+  // big buttons right at the top: try it / watch it, and the code
+  const actions = el("div", "stage-actions");
+  if (p.live) { const b = el("a", "btn primary big", p.liveText || "Try it"); b.href = p.live; b.target = "_blank"; b.rel = "noopener"; actions.appendChild(b); }
+  if (p.code) { const b = el("a", "btn big", "Code"); b.href = p.code; b.target = "_blank"; b.rel = "noopener"; actions.appendChild(b); }
+  if (actions.children.length) stage.appendChild(actions);
+
   // the real thing: a short video or a screenshot
   const media = buildMedia(p);
   if (media) stage.appendChild(media);
@@ -277,11 +360,6 @@ function showProject(index) {
   p.stack.forEach((s) => chips.appendChild(el("span", "", s)));
   stage.appendChild(chips);
 
-  // links
-  const links = el("div", "links");
-  if (p.live) { const a = el("a", "", p.liveText || "Try it"); a.href = p.live; links.appendChild(a); }
-  if (p.code) { const a = el("a", "", "Code"); a.href = p.code; links.appendChild(a); }
-  if (links.children.length) stage.appendChild(links);
 
   // a quick fade-in when switching
   if (!calm) stage.animate([{ opacity: 0, transform: "translateY(6px)" }, { opacity: 1, transform: "none" }], { duration: 300, easing: "ease-out" });
@@ -313,39 +391,6 @@ if (list && stage && projects.length) {
   showProject(0);
 }
 
-/* ==========================================================
-   THE EDIT AT THE TOP: a short looping video of photos of me, with music.
-   Sound is on by default. Browsers block sound until the visitor clicks or
-   presses a key, so if that happens it plays muted and the sound comes on
-   at their first click. Clicking the video pauses or plays it.
-   ========================================================== */
-const edit = document.getElementById("edit");
-if (edit) {
-  edit.addEventListener("click", () => {
-    if (edit.paused) { edit.muted = false; edit.play().catch(() => {}); }
-    else edit.pause();
-  });
-
-  if (!calm) {
-    edit.muted = false;
-    edit.play().catch(() => {
-      edit.muted = true;
-      edit.play().catch(() => {});
-      const unmute = (e) => {
-        stopListening();
-        if (e.target === edit) return; // a click on the video itself pauses it instead
-        edit.muted = false;
-        if (edit.paused) edit.play().catch(() => {});
-      };
-      const stopListening = () => {
-        document.removeEventListener("pointerdown", unmute, true);
-        document.removeEventListener("keydown", unmute, true);
-      };
-      document.addEventListener("pointerdown", unmute, true);
-      document.addEventListener("keydown", unmute, true);
-    });
-  }
-}
 
 /* ==========================================================
    CONTENT CAROUSEL: a sideways row of my Instagram videos.
@@ -403,18 +448,3 @@ if (reelsBox && content.length) {
   document.getElementById("reels-prev").addEventListener("click", () => reelsBox.scrollBy({ left: -step(), behavior: calm ? "auto" : "smooth" }));
   document.getElementById("reels-next").addEventListener("click", () => reelsBox.scrollBy({ left: step(), behavior: calm ? "auto" : "smooth" }));
 }
-
-/* ==========================================================
-   ONLY ONE VIDEO MAKES SOUND AT A TIME.
-   When any video starts playing with sound, every other video goes quiet
-   (so the music at the top stops when you turn on a project video).
-   ========================================================== */
-function quietOthers(e) {
-  const v = e.target;
-  if (!(v instanceof HTMLVideoElement) || v.muted || v.paused) return;
-  document.querySelectorAll("video").forEach((other) => {
-    if (other !== v && !other.muted) other.muted = true;
-  });
-}
-document.addEventListener("play", quietOthers, true);
-document.addEventListener("volumechange", quietOthers, true);

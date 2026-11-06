@@ -69,6 +69,7 @@ window.PROJECTS = [
     video: "assets/media/redline-demo.mp4",
     poster: "assets/media/redline-demo.jpg",
     tall: true,
+    sound: true,
     mediaAlt: "Demoing Redline to the SwampHacks judges: the crew dashboard flags a heat alert, then the phone app",
     code: "https://github.com/aidenkaro10/redline"
   },
