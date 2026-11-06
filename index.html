@@ -22,7 +22,7 @@
   <!-- Fonts: a serif for headlines, a clean sans for everything else -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
   <!-- All the styling lives in style.css -->
   <link rel="stylesheet" href="style.css">
@@ -33,7 +33,6 @@
 
   <!-- ===== TOP BAR ===== -->
   <header class="nav">
-    <a href="#top" class="logo">Aiden Karo</a>
     <nav aria-label="Sections">
       <a href="#experience">Experience</a>
       <a href="#projects">Projects</a>
@@ -48,10 +47,94 @@
     <section class="hero">
       <div class="hero-grid">
         <div class="hero-text">
-          <!-- each line slides up when the page opens -->
-          <h1><span class="line"><span>I build AI tools</span></span> <span class="line"><span>that do real work.</span></span></h1>
+          <!-- my name as a spray-painted graffiti tag. All drawn in code (SVG), so it stays sharp at any size.
+               Layers, bottom to top: colored mist, 3D shadow, cream outline, paint fill, halftone dots, shine, stars. -->
+          <h1 class="tag">
+            <svg viewBox="0 0 1000 300" role="img" aria-labelledby="tag-title">
+              <title id="tag-title">Aiden Karo</title>
+              <defs>
+                <!-- the spray paint colors -->
+                <linearGradient id="paint" gradientUnits="userSpaceOnUse" x1="30" y1="60" x2="970" y2="240">
+                  <stop offset="0" stop-color="#ff6a1a"/>
+                  <stop offset="0.28" stop-color="#ff3d8b"/>
+                  <stop offset="0.52" stop-color="#8f5cff"/>
+                  <stop offset="0.76" stop-color="#2bb5ff"/>
+                  <stop offset="1" stop-color="#c6f432"/>
+                </linearGradient>
+                <!-- glossy highlight across the top of the letters -->
+                <linearGradient id="shine" gradientUnits="userSpaceOnUse" x1="0" y1="70" x2="0" y2="150">
+                  <stop offset="0" stop-color="#fff" stop-opacity="0.75"/>
+                  <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+                </linearGradient>
+                <!-- little dots inside the letters, like a halftone print -->
+                <pattern id="dots" width="14" height="14" patternUnits="userSpaceOnUse" patternTransform="rotate(30)">
+                  <circle cx="7" cy="7" r="2.2" fill="#140a26" fill-opacity="0.28"/>
+                </pattern>
+                <!-- overspray: blur the paint and rough up its edges -->
+                <filter id="mist" x="-20%" y="-40%" width="140%" height="180%">
+                  <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="3" seed="7" result="noise"/>
+                  <feDisplacementMap in="SourceGraphic" in2="noise" scale="48"/>
+                  <feGaussianBlur stdDeviation="14"/>
+                </filter>
+                <!-- speckles of paint around the edges -->
+                <filter id="speckle" x="-20%" y="-40%" width="140%" height="180%">
+                  <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="1" seed="3" result="grain"/>
+                  <feColorMatrix in="grain" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 9 -5.2" result="dots"/>
+                  <feMorphology in="SourceGraphic" operator="dilate" radius="22" result="wide"/>
+                  <feComposite in="wide" in2="dots" operator="in"/>
+                </filter>
+                <!-- rough edge for the spray-on wipe -->
+                <filter id="rough">
+                  <feTurbulence type="fractalNoise" baseFrequency="0.06" numOctaves="2" seed="11" result="n"/>
+                  <feDisplacementMap in="SourceGraphic" in2="n" scale="70"/>
+                </filter>
+                <mask id="spray-on" maskUnits="userSpaceOnUse" x="-100" y="-100" width="1200" height="500">
+                  <rect class="spray-wipe" x="-80" y="-80" width="1160" height="460" fill="#fff" filter="url(#rough)"/>
+                </mask>
+              </defs>
+
+              <g mask="url(#spray-on)">
+                <g transform="rotate(-4 500 150)">
+                  <!-- colored mist on the wall -->
+                  <g class="mist" filter="url(#mist)" fill="url(#paint)" stroke="url(#paint)" stroke-width="30" stroke-linejoin="round">
+                    <text class="tag-text" x="30" y="214" textLength="940" lengthAdjust="spacingAndGlyphs">Aiden Karo</text>
+                  </g>
+                  <!-- paint speckles -->
+                  <g class="speckle" filter="url(#speckle)" fill="url(#paint)">
+                    <text class="tag-text" x="30" y="214" textLength="940" lengthAdjust="spacingAndGlyphs">Aiden Karo</text>
+                    <path d="M92 196 h16 v46 q0 12 -8 12 q-8 0 -8 -12 z M268 196 h16 v30 q0 12 -8 12 q-8 0 -8 -12 z M452 196 h16 v64 q0 12 -8 12 q-8 0 -8 -12 z M628 196 h16 v38 q0 12 -8 12 q-8 0 -8 -12 z M902 196 h16 v54 q0 12 -8 12 q-8 0 -8 -12 z"/>
+                  </g>
+                  <!-- 3D shadow -->
+                  <g transform="translate(9 11)" fill="#24104a" stroke="#24104a" stroke-width="22" stroke-linejoin="round">
+                    <text class="tag-text" x="30" y="214" textLength="940" lengthAdjust="spacingAndGlyphs">Aiden Karo</text>
+                    <path d="M92 196 h16 v46 q0 12 -8 12 q-8 0 -8 -12 z M268 196 h16 v30 q0 12 -8 12 q-8 0 -8 -12 z M452 196 h16 v64 q0 12 -8 12 q-8 0 -8 -12 z M628 196 h16 v38 q0 12 -8 12 q-8 0 -8 -12 z M902 196 h16 v54 q0 12 -8 12 q-8 0 -8 -12 z"/>
+                  </g>
+                  <!-- cream outline -->
+                  <g fill="none" stroke="#f3efe8" stroke-width="16" stroke-linejoin="round">
+                    <text class="tag-text" x="30" y="214" textLength="940" lengthAdjust="spacingAndGlyphs">Aiden Karo</text>
+                    <path d="M92 196 h16 v46 q0 12 -8 12 q-8 0 -8 -12 z M268 196 h16 v30 q0 12 -8 12 q-8 0 -8 -12 z M452 196 h16 v64 q0 12 -8 12 q-8 0 -8 -12 z M628 196 h16 v38 q0 12 -8 12 q-8 0 -8 -12 z M902 196 h16 v54 q0 12 -8 12 q-8 0 -8 -12 z"/>
+                  </g>
+                  <!-- the paint itself -->
+                  <g fill="url(#paint)">
+                    <text class="tag-text" x="30" y="214" textLength="940" lengthAdjust="spacingAndGlyphs">Aiden Karo</text>
+                    <path d="M92 196 h16 v46 q0 12 -8 12 q-8 0 -8 -12 z M268 196 h16 v30 q0 12 -8 12 q-8 0 -8 -12 z M452 196 h16 v64 q0 12 -8 12 q-8 0 -8 -12 z M628 196 h16 v38 q0 12 -8 12 q-8 0 -8 -12 z M902 196 h16 v54 q0 12 -8 12 q-8 0 -8 -12 z"/>
+                  </g>
+                  <!-- halftone dots and the shine -->
+                  <text class="tag-text" x="30" y="214" textLength="940" lengthAdjust="spacingAndGlyphs" fill="url(#dots)">Aiden Karo</text>
+                  <text class="tag-text" x="30" y="214" textLength="940" lengthAdjust="spacingAndGlyphs" fill="url(#shine)">Aiden Karo</text>
+                </g>
+                <!-- sparkles -->
+                <g class="stars" fill="#fff">
+                  <path class="star" d="M70 40 l6 18 l18 6 l-18 6 l-6 18 l-6 -18 l-18 -6 l18 -6 z"/>
+                  <path class="star s2" d="M560 22 l4 12 l12 4 l-12 4 l-4 12 l-4 -12 l-12 -4 l12 -4 z"/>
+                  <path class="star s3" d="M950 214 l5 15 l15 5 l-15 5 l-5 15 l-5 -15 l-15 -5 l15 -5 z"/>
+                </g>
+              </g>
+            </svg>
+          </h1>
+          <p class="tagline intro">I build AI tools that do real work.</p>
           <p class="lead intro">
-            I'm Aiden, a Math and CS student at the University of Florida. I run Rekko, an AI search startup for local businesses, and I build AI tools on the side.
+            Math and CS student at the University of Florida. I run Rekko, an AI search startup for local businesses, and I build AI tools on the side.
           </p>
           <div class="buttons intro">
             <a href="#projects" class="btn primary">See my projects</a>
