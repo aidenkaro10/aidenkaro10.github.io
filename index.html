@@ -29,13 +29,14 @@
 </head>
 <body>
   <!-- lets keyboard users jump past the menu -->
-  <a class="skip" href="#work">Skip to projects</a>
+  <a class="skip" href="#projects">Skip to projects</a>
 
   <!-- ===== TOP BAR ===== -->
   <header class="nav">
     <a href="#top" class="logo">Aiden Karo</a>
     <nav aria-label="Sections">
-      <a href="#work">Work</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -45,121 +46,119 @@
 
     <!-- ===== INTRO ===== -->
     <section class="hero">
-      <p class="eyebrow reveal">Student · Founder · Builder</p>
-      <h1 class="reveal">I build AI tools<br>that do <em>real work.</em></h1>
-      <p class="lead reveal">
-        I'm Aiden. Math and CS student at the University of Florida. I run Rekko, a startup that gets local businesses seen on Google and in AI answers, and I build tools and automations on the side.
-      </p>
-      <div class="buttons reveal">
-        <a href="#work" class="btn primary">See my work</a>
-        <a href="https://github.com/aidenkaro10" class="btn">GitHub</a>
-        <!-- EDIT: drop a resume.pdf file in this folder, then uncomment this line -->
-        <!-- <a href="resume.pdf" class="btn">Resume</a> -->
+      <div class="hero-grid">
+        <div class="hero-text">
+          <!-- each line slides up when the page opens -->
+          <h1><span class="line"><span>I build AI tools</span></span> <span class="line"><span>that do real work.</span></span></h1>
+          <p class="lead intro">
+            I'm Aiden, a Math and CS student at the University of Florida. I run Rekko, an AI search startup for local businesses, and I build AI tools on the side.
+          </p>
+          <div class="buttons intro">
+            <a href="#projects" class="btn primary">See my projects</a>
+            <a href="https://github.com/aidenkaro10" class="btn">GitHub</a>
+            <!-- EDIT: drop a resume.pdf file in this folder, then uncomment this line -->
+            <!-- <a href="resume.pdf" class="btn">Resume</a> -->
+          </div>
+        </div>
+
+        <!-- a quick edit of photos of me. To change it, swap assets/media/me.mp4 -->
+        <figure class="edit intro">
+          <video id="edit" src="assets/media/me.mp4" poster="assets/media/me.jpg" muted loop playsinline preload="auto"
+                 aria-label="A quick edit of photos of me set to music: New York, Gators games, basketball, a trophy, tennis, and friends"></video>
+        </figure>
       </div>
 
       <!-- three quick facts -->
       <ul class="facts reveal">
         <li><strong>Founder</strong><span>Rekko, Apr 2026 to now</span></li>
-        <li><strong>2nd of 39</strong><span>Jane Street AMP bot competition</span></li>
+        <li><strong>Jane Street AMP</strong><span>Summer 2026</span></li>
         <li><strong>UF Honors</strong><span>Math + CS, class of 2030</span></li>
       </ul>
     </section>
 
-    <!-- ===== SELECTED WORK ===== -->
-    <section id="work">
-      <h2 class="reveal">Selected work</h2>
+    <!-- ===== EXPERIENCE ===== -->
+    <section id="experience">
+      <h2 class="reveal">Experience</h2>
 
-      <!-- the two big ones -->
-      <article class="feature with-list reveal">
-        <div class="feature-text">
-          <span class="tag">Startup · Founder</span>
-          <h3>Rekko</h3>
-          <p>
-            AI search visibility for local businesses. It gets home-service companies to the top of Google and AI recommendations. I built the whole system myself, and it serves paying clients.
-          </p>
-          <p class="stack">n8n · Claude API · Supabase · Twilio · Firecrawl</p>
-          <!-- EDIT: put Rekko's website in href and uncomment this
-          <div class="links"><a href="https://...">Website →</a></div> -->
-        </div>
-        <!-- a few of the services Rekko runs for clients -->
-        <div class="services" aria-label="Some of what Rekko does">
-          <span class="services-count">12+</span>
-          <span class="services-label">marketing services delivered to clients</span>
+      <!--
+        HOW TO ADD A JOB:
+        Copy everything from <article class="job"> to </article>, paste it, and change the text.
+      -->
+      <article class="job reveal">
+        <div class="when">Apr 2026 to now</div>
+        <div class="what">
+          <h3>Founder <span>at Rekko</span></h3>
+          <p class="job-sub">AI search visibility for local businesses. Gets home-service companies to the top of Google and AI recommendations.</p>
           <ul>
-            <li>Review automation</li>
-            <li>Google Business Profile posts</li>
-            <li>Keyword research</li>
-            <li>Missed-call text-back</li>
+            <li>Built the whole agency stack myself. It delivers 12+ marketing services to paying home-service clients.</li>
+            <li>Onboarding pipeline scrapes each client and their competitors into reusable context that every deliverable pulls from.</li>
+            <li>Shipped review automation, Google Business Profile posting, schema and FAQ generation, citation audits, and missed-call text-back.</li>
+            <li>Keyword research and scoring pipeline that turns into a monthly content calendar for each client.</li>
+            <!-- EDIT: add a real number here, like clients, revenue, or a ranking win -->
           </ul>
+          <!-- the animated diagram. Its steps live in projects.js under FLOWS.rekko -->
+          <div class="flow-box" data-flow="rekko"></div>
+          <p class="chips"><span>AI agents</span><span>Claude API</span><span>Supabase</span><span>Twilio</span><span>Firecrawl</span></p>
         </div>
       </article>
 
-      <article class="feature with-image reveal">
-        <a class="shot" href="https://aidenkaro10.github.io/llm-council/" aria-label="Open LLM Council">
-          <img src="assets/llm-council.jpg" alt="LLM Council: AI lawyers in a 3D courtroom, with the verdict panel on the left" width="1008" height="630" loading="lazy">
-        </a>
-        <div class="feature-text">
-          <span class="tag">Web app · Live</span>
-          <h3>LLM Council</h3>
-          <p>
-            Ask one question and four AI models answer it, rank each other blind, and a judge writes one verdict. While you wait, they argue it out in a 3D courtroom with voices and captions. Runs fully in the browser with your own key.
-          </p>
-          <p class="stack">React · three.js · OpenRouter</p>
-          <div class="links">
-            <a href="https://aidenkaro10.github.io/llm-council/">Try it →</a>
-            <a href="https://github.com/aidenkaro10/llm-council">Code</a>
-          </div>
+      <article class="job reveal">
+        <div class="when">Summer 2026</div>
+        <div class="what">
+          <h3>Jane Street AMP <span>in New York</span></h3>
+          <p class="job-sub">Academy of Math and Programming</p>
+          <ul>
+            <li>Studied number theory, combinatorics, and computer science.</li>
+          </ul>
+          <p class="chips"><span>Number theory</span><span>Combinatorics</span><span>Computer science</span></p>
         </div>
       </article>
 
-      <!-- the rest, in a grid -->
-      <div class="grid">
-        <!--
-          HOW TO ADD A PROJECT:
-          Copy everything from <article> to </article>, paste it below, and change the text.
-          Delete the <div class="links"> part if a project has no link.
-        -->
-        <article class="card reveal">
-          <span class="tag">Hackathon · SwampHacks XII</span>
-          <h3>Redline</h3>
-          <p>A wristband that warns outdoor workers before they overheat, plans the crew's day around the heat, and calls for help if someone goes down.</p>
-          <p class="stack">Python · Neural nets · Claude · Bluetooth LE</p>
-          <div class="links"><a href="https://github.com/aidenkaro10/redline">Code →</a></div>
-        </article>
+      <article class="job reveal">
+        <div class="when">Feb to Jun 2026</div>
+        <div class="what">
+          <h3>Marketing Intern <span>at Rossert Digital Marketing</span></h3>
+          <ul>
+            <li>Built blog posts, lead generators, and automations for local service and e-commerce clients.</li>
+          </ul>
+          <p class="chips"><span>SEO</span><span>Content</span><span>Automation</span></p>
+        </div>
+      </article>
+    </section>
 
-        <article class="card reveal">
-          <span class="tag">App · UF Promptathon</span>
-          <h3>GatorFit</h3>
-          <p>A social wellness app built around a Gainesville run club. Workouts and meals earn points on a leaderboard, and a gator chomps your row when someone passes you.</p>
-          <p class="stack">JavaScript · Postgres · Claude · USDA FoodData</p>
-          <div class="links"><a href="https://github.com/aidenkaro10/GatorFit">Code →</a></div>
-        </article>
-
-        <article class="card reveal">
-          <span class="tag">Web · Live</span>
-          <h3>Campus Tab</h3>
-          <p>A new tab page in your university's colors, built to work for any campus.</p>
-          <p class="stack">HTML · JavaScript</p>
-          <div class="links"><a href="https://aidenkaro10.github.io/campus-tab/">Try it →</a></div>
-        </article>
-
-        <article class="card reveal">
-          <span class="tag">Story · Live</span>
-          <h3>How a Founder Is Made</h3>
-          <p>A scroll film about growing up Israeli and becoming a founder.</p>
-          <p class="stack">HTML · CSS · JavaScript</p>
-          <div class="links"><a href="https://aidenkaro10.github.io/how-a-founder-is-made/">Watch →</a></div>
-        </article>
+    <!-- ===== PROJECTS =====
+         The list and the animated diagrams are built by script.js
+         from the data in projects.js. To add or change a project, edit projects.js. -->
+    <section id="projects">
+      <h2 class="reveal">Projects</h2>
+      <p class="section-sub reveal">Pick one to see how it works.</p>
+      <div class="projects reveal">
+        <div class="project-list" id="project-list" role="tablist" aria-label="Projects"></div>
+        <div class="stage" id="stage" role="tabpanel" aria-live="polite"></div>
       </div>
+      <noscript><p class="section-sub">Turn on JavaScript to see the projects, or visit <a href="https://github.com/aidenkaro10">my GitHub</a>.</p></noscript>
+    </section>
 
-      <!-- smaller tools, as a simple list -->
-      <h3 class="list-title reveal">Tools I built for myself</h3>
-      <ul class="tools reveal">
-        <li><strong>Canvas LMS Agent</strong><span>Connects Claude to UF's Canvas to handle 9 kinds of coursework tasks.</span></li>
-        <li><strong>Internship Finder</strong><span>Runs twice a day, finds new postings, removes duplicates, and emails me the good ones.</span></li>
-        <li><strong>Second Brain</strong><span>My AI knowledge base across school, content and business.</span></li>
-        <li><strong>Video Pipeline</strong><span>Cuts, merges and formats raw footage into short-form videos ready to post.</span></li>
+    <!-- ===== AWARDS ===== -->
+    <section id="awards">
+      <h2 class="reveal">Awards</h2>
+      <ul class="awards reveal">
+        <li><strong>Gator Quant Hacks</strong><span>1st place, Systematic Trading track</span></li>
+        <li><strong>UF Gator AI Hackathon</strong><span>Best Wellness App</span></li>
+        <li><strong>SwampHacks XII</strong><span>3rd place, Sperry Tech PlanIT Control track</span></li>
+        <li><strong>Eitanim Marketing Competition</strong><span>1st place</span></li>
       </ul>
+    </section>
+
+    <!-- ===== SKILLS ===== -->
+    <section id="skills">
+      <h2 class="reveal">Skills</h2>
+      <div class="skills reveal">
+        <div><h3>Languages</h3><p class="chips"><span>Python</span><span>JavaScript</span><span>C++</span><span>SQL</span><span>HTML / CSS</span></p></div>
+        <div><h3>AI</h3><p class="chips"><span>Claude API</span><span>AI agents</span><span>PyTorch</span><span>scikit-learn</span><span>LoRA fine-tuning</span><span>OpenRouter</span></p></div>
+        <div><h3>Automation</h3><p class="chips"><span>n8n</span><span>Web scraping</span><span>Firecrawl</span><span>Twilio</span><span>ffmpeg</span></p></div>
+        <div><h3>Tools</h3><p class="chips"><span>Supabase</span><span>Git / GitHub</span><span>React</span><span>three.js</span><span>pandas</span><span>NumPy</span></p></div>
+      </div>
     </section>
 
     <!-- ===== ABOUT ===== -->
@@ -168,10 +167,10 @@
       <div class="about reveal">
         <p>
           I'm in the Honors Program at the University of Florida studying Math and Computer Science, class of 2030.
-          This summer I was at Jane Street's AMP in New York, where my team placed 2nd of 39 in an algorithm bot competition.
+          This summer I was at Jane Street AMP, studying number theory, combinatorics, and computer science.
         </p>
         <p>
-          I also published a study on how pro athletes use visualization, and I'm the incoming president of UF's Tikkun Olam Makers chapter.
+          I also published a study on how pro athletes use visualization, and I'm the incoming president of UF's Tikkun Olam Makers chapter. I'm also in TAMID, where I'll be a full-stack developer for startup clients starting January 2027.
           I'm looking for internships where I can build real things with AI.
         </p>
       </div>
@@ -184,8 +183,8 @@
       <div class="links big reveal">
         <!-- EDIT: to add email, uncomment this and put your address in -->
         <!-- <a href="mailto:you@example.com">Email</a> -->
-        <a href="https://www.linkedin.com/in/aiden-karo-8562802b7/">LinkedIn →</a>
-        <a href="https://github.com/aidenkaro10">GitHub →</a>
+        <a href="https://www.linkedin.com/in/aiden-karo-8562802b7/">LinkedIn</a>
+        <a href="https://github.com/aidenkaro10">GitHub</a>
       </div>
     </section>
 
@@ -196,6 +195,7 @@
     <div class="foot">© <span id="year">2026</span> Aiden Karo</div>
   </footer>
 
+  <script src="projects.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
