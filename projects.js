@@ -158,8 +158,8 @@ window.PROJECTS = [
     year: "2026",
     status: "Live",
     line: "An AI-made scroll film about becoming a founder in Israel.",
-    blurb: "A scroll-driven film. You follow Omer or Shira from childhood to a startup in Tel Aviv. Every scene, voice and piece of music was made with AI, then stitched into a website you scroll through. Made with Guy Taylor.",
-    stats: [["51", "AI video clips"], ["2", "story paths"], ["~10 min", "of narration"]],
+    blurb: "A scroll-driven film. You follow Shira from childhood on a kibbutz to a startup in Tel Aviv. Every scene, voice and piece of music was made with AI, then stitched into a website you scroll through. Made with Guy Taylor.",
+    stats: [["51", "AI video clips"], ["17", "narrated scenes"], ["~4 min", "of narration"]],
     steps: [
       { label: "Research + script", tool: "Writing", say: "Research the story and write every scene." },
       { label: "Characters + frames", tool: "Nano Banana Pro", say: "AI draws character sheets and the first frame of each scene." },
